@@ -1,6 +1,6 @@
 # Overview
 
-The **alib** (short for **a library**) provides a common **Python 3.X** basis for our **Virtual Network Embedding Problem (VNEP)** approximation framework. It is contains few changes accommodating for the implementation of latency constraints compared to the original version from **[Github at github.com/vnep-approx-py3/alib-py3](https://github.com/vnep-approx-py3/alib-py3)**.
+The **alib** (short for **a library**) provides a common **Python 3.X** basis for our **Virtual Network Embedding Problem (VNEP)** approximation framework. It is contains small changes accommodating for the implementation of latency constraints compared to the version from **[Github at github.com/vnep-approx-py3/alib-py3](https://github.com/vnep-approx-py3/alib-py3)**.
 
 As such, it contains (among other things) 
 - A common **[data model](alib/datamodel.py)** to capture the notions of **substrate graphs** (physical networks), **request graphs** (virtual networks), and **embeddings** of requests to a substrate, **scenarios**, i.e. bundling multiple requests to be embedded on a common substrate.

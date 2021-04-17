@@ -215,13 +215,15 @@ class Mapping(object):
         Initially, the mapping is empty and needs to be populated by the map_node and map_edge functions.
     '''
 
-    def __init__(self, name, request, substrate, is_embedded):
+    def __init__(self, name, request, substrate, is_embedded, latency_limit=None):
         self.name = name
         self.request = request
         self.substrate = substrate
         self.mapping_nodes = {}
         self.mapping_edges = {}
         self.is_embedded = is_embedded
+        self.mapping_latencies = {}
+        self.latency_limit = latency_limit
 
     def map_node(self, i, u):
         ''' Maps the single request node i on to the substrate node u.
@@ -247,7 +249,7 @@ class Mapping(object):
                 i, self.request.name, u, i_allowed_nodes
             ))
 
-    def map_edge(self, ij, mapped_path):
+    def map_edge(self, ij, mapped_path, latency=None):
         """ maps a virtual edge ij of the request to a path(multiple edges) mapped_path of the substrate"""
 
         if ij in self.mapping_edges:
@@ -260,6 +262,7 @@ class Mapping(object):
         # empty path direct mapping
         if not mapped_path:
             self.mapping_edges[ij] = mapped_path
+            if latency is not None: self.mapping_latencies[ij] = latency
         else:
             i, j = ij
             subfirsttail, subfirsthead = mapped_path[0]
@@ -269,6 +272,7 @@ class Mapping(object):
                 # it's only single edge mapped on single edge
                 if not len(mapped_path) > 1:
                     self.mapping_edges[ij] = mapped_path
+                    if latency is not None: self.mapping_latencies[ij] = latency
                 else:
                     # check wether path is a real edge path and connected
                     for i, currentedge in enumerate(mapped_path):
@@ -278,6 +282,7 @@ class Mapping(object):
                             if currenthead != nexttail:
                                 raise MappingError("Path {} is not connected in substrate".format(mapped_path))
                     self.mapping_edges[ij] = mapped_path
+                    if latency is not None: self.mapping_latencies[ij] = latency
 
     def get_mapping_of_node(self, i):
         return self.mapping_nodes[i]
