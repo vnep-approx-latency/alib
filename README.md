@@ -8,8 +8,8 @@ This repository contains a common data model, a common scenario generation/execu
 
 This GitHub Organization contains three repositories which contain the functionality for solving the VNEP with latency constraints and evaluating the results: 
 
-- **[alib](https://github.com/vnep-approx/alib)**: A library providing the basic data model and the Mixed-Integer Program for the classic multi-commodity formulation.
-- **[vnep_approx](https://github.com/vnep-approx/vnep_approx)**: Provides Linear Programming formulations, specifically the one based on the DynVMP algorithm, as well as Randomized Rounding algorithms to solve the VNEP.
+- **[alib](https://github.com/vnep-approx-latency/alib)**: A library providing the basic data model and the Mixed-Integer Program for the classic multi-commodity formulation.
+- **[vnep_approx](https://github.com/vnep-approx-latency/vnep-approx)**: Provides Linear Programming formulations, specifically the one based on the DynVMP algorithm, as well as Randomized Rounding algorithms to solve the VNEP.
 - **[evaluation-ifip-networking-2021](https://github.com/vnep-approx-latency/evaluation-ifip-networking-2021)**: Provides functionality for evaluating experiment artifacts to create plots to compare runtime, profits and other algorithm parameters.
 
 ### Papers
@@ -20,13 +20,13 @@ This GitHub Organization contains three repositories which contain the functiona
 
 # Dependencies and Requirements
 
-The alib library requires Python 3.X and uses the following libraries: gurobipy, numpy, networkx (for parsing TopologyZoo instances), matplotlib, and click. 
+The **alib** library requires Python 3 and uses the following libraries: gurobipy, numpy, networkx (for parsing TopologyZoo instances), matplotlib and click. 
 
-Gurobi must be installed and the .../gurobi64/lib directory added to the environment variable LD_LIBRARY_PATH.
+The [Gurobi Solver](https://www.gurobi.com/) must be installed and the .../gurobi64/lib directory added to the environment variable LD_LIBRARY_PATH.
 
 # Installation
 
-Install the **alib** package using the setup script we provide. Simply execute from within each of the packages root directories: 
+Install the **alib** package using the setup script we provide. Simply execute from within the packages root directory: 
 
 ```
 pip install -e .
@@ -38,10 +38,9 @@ We generally recommend installing our libraries in a virtual environment.
 
 # Usage
 
-**For a detailed walk-through of how to use the algorithms, view the examples in the** [**evaluation-ifip-networking-2021**](https://github.com/vnep-approx-latency/evaluation-ifip-networking-2021) **repository.**
+**For a detailed walk-through of how to use the algorithms and reproduce the results from the paper, please view the examples in the** [**evaluation-ifip-networking-2021**](https://github.com/vnep-approx-latency/evaluation-ifip-networking-2021) **repository.**
 
-For generating and executing (etc.) experiments, the environment variable **ALIB_EXPERIMENT_HOME** should be set to a path,
-such that the subfolders input/ output/ and log/ exist. If this environment variable is not set, the current working directory is traversed upwards until a directory containing input/, output/, and log/ is found.
+For generating and executing (etc.) experiments, the environment variable **ALIB_EXPERIMENT_HOME** should be set to a path, such that the subfolders input/ output/ and log/ exist. If this environment variable is not set, the current working directory is traversed upwards until a directory containing input/, output/, and log/ is found.
 
 You may either use our code via our API by importing the library or via our command line interface:
 
